@@ -39,8 +39,8 @@ namespace SLINTIC.Reflection
         ///<summary>
         /// Gets requested field and replaces its value
         ///</summary>
-        public static void Impose<T>(string fieldName, object ?instance,object ?fieldImport) => typeof(T).GetField(fieldName)?.SetValue(instance, fieldImport);
+        public static void Impose<T>(string fieldName, object ?instance, object ?fieldImport) => typeof(T).GetField(fieldName)?.SetValue(instance, fieldImport);
         // Overload 1 for BindingFlags
-        public static void Impose<T>(string fieldName, BindingFlags flags, object? instance, object? fieldImport) => typeof(T).GetField(fieldName, flags)?.SetValue(instance, fieldImport);
+        public static void Impose<T>(string fieldName, BindingFlags flags, object ?instance, object ?fieldImport) => typeof(T).GetField(fieldName, flags)?.SetValue(instance, fieldImport);
     }
 }
