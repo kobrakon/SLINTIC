@@ -8,8 +8,8 @@ namespace SLINTIC.Math
         public static unsafe float FastInvSqrt(float number)
         {   // we all know this one
             long i;
-	        float x2, y;
-	        const float threehalfs = 1.5F;
+	    float x2, y;
+	    const float threehalfs = 1.5F;
 
             x2 = number * 0.5F;
             y  = number;
