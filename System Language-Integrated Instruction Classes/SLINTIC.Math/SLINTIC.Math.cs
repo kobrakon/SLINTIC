@@ -1,6 +1,6 @@
 namespace SLINTIC.Math
 {
-    public class Math
+    public static class Math
     {
         ///<summary>
         /// Low latency floating point inverse square root operation for calculating normalized vectors in a 3D environment
@@ -19,5 +19,8 @@ namespace SLINTIC.Math
             y  = y * ( threehalfs - ( x2 * y * y ) );
             return y;
         }
+	
+	// float extension
+	public static unsafe float ToInvSqrt (this float number) => FastInvSqrt(number);
     }
 }
