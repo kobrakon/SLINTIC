@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>System_Language_Integrated_Instruction_Classes</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <SignAssembly>False</SignAssembly>
+    <Title>System Language-Integrated Instruction Classes (SLINTIC)</Title>
+    <Copyright>© 2022 Zachary Braden CC-BY-NC-ND</Copyright>
+    <Authors>Zachary Braden</Authors>
+    <AssemblyName>SLINTIC</AssemblyName>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>True</Optimize>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="UnityEngine">
+      <HintPath>dependencies/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>dependencies/UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>dependencies/UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="BepInEx">
+      <HintPath>dependencies/BepInEx.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
