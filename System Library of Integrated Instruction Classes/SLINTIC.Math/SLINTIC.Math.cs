@@ -113,7 +113,7 @@ namespace SLINTIC.Math
         public static float RoundWhole(float number)
         {
             if (number.ToString().Contains(".")) return Round(number);
-            int[] num = number.Cast<int>().ToArray();
+            int[] num = number.ToString().ToCharArray().Cast<int>().ToArray();
 
             if (num[num.Length - 1] >= 5)
             {
