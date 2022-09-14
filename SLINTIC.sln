@@ -3,7 +3,12 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32804.467
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "System Language-Integrated Instruction Classes", "System Language-Integrated Instruction Classes\System Language-Integrated Instruction Classes.csproj", "{FF079412-BC20-43C6-A960-1C068A546EB6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "System Library of Integrated Instruction Classes", "System Library of Integrated Instruction Classes\System Library of Integrated Instruction Classes.csproj", "{FF079412-BC20-43C6-A960-1C068A546EB6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{ED73A411-5EBF-45F2-8A62-EF3FC4D4CD30}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

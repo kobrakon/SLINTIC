@@ -2,18 +2,24 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <RootNamespace>System_Language_Integrated_Instruction_Classes</RootNamespace>
+    <RootNamespace>SLINTIC</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <SignAssembly>False</SignAssembly>
-    <Title>System Language-Integrated Instruction Classes (SLINTIC)</Title>
+    <Title>System Library of Integrated Instruction Classes (SLINTIC)</Title>
     <Copyright>© 2022 Zachary Braden CC-BY-NC-ND</Copyright>
     <Authors>Zachary Braden</Authors>
     <AssemblyName>SLINTIC</AssemblyName>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <Optimize>True</Optimize>
+    <Optimize>False</Optimize>
+    <NoWarn>1701;1702;8603;8618;8601;8604</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>1701;1702;8603;8618;8601;8604</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
@@ -29,6 +35,21 @@
     <Reference Include="BepInEx">
       <HintPath>dependencies/BepInEx.dll</HintPath>
     </Reference>
+    <Reference Include="Harmony">
+      <HintPath>dependencies/0Harmony.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="SLINTIC.Exceptions\" /> <!--why-->
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Windows.Compatibility" Version="6.0.0" />
   </ItemGroup>
 
 </Project>
