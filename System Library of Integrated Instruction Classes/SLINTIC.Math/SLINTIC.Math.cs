@@ -7,12 +7,10 @@ namespace SLINTIC.Math
 {
     public static class Math
     {
-        internal static System.Timers.Timer TimeOutTimer = new System.Timers.Timer(30000); // Timeout for while() statements to prevent endless calculation
-
         /// <summary>
-        /// Low latency floating point inverse square root operation for calculating normalized vectors in a 3D environment
+        /// Low latency floating point inverse square root operation for calculating normalized vectors
         /// </summary>
-        [Description("Low latency floating point inverse square root operation for calculating normalized vectors in a 3D environment"),Category("Vector Calculations")]
+        /// <returns>The inverse square root of a given number</returns>
         public static unsafe float FastInvSqrt(float number)
         {   // we all know this one
             long i;
@@ -21,16 +19,14 @@ namespace SLINTIC.Math
 
             x2 = number * 0.5F;
             y = number;
-            i = * ( long * ) &y; // initiate memory fuck
+            i = * ( long * ) &y;
             i = 0x5f3759df - (i >> 1); // hell
             y = * ( float * ) &i;
             y = y * (threehalfs - (x2 * y * y));
             return y;
         }
 
-        /// <returns>
-        /// The square root of a given number
-        /// </returns>
+        /// <returns>The square root of a given number</returns>
         public static float SqrtOf(float number)
         {
             if (number.ToString().StartsWith("-"))
@@ -44,9 +40,7 @@ namespace SLINTIC.Math
         public static int DeEntroponize(this float num) => num.ToString().Split(".")[0].Cast<int>().ToArray().Concatenate();
 
         // Overload 1: float extension
-        /// <returns>
-        /// The square root of a given number
-        /// </returns>
+        /// <returns>The square root of a given number</returns>
         public static float Sqrt(this float number) => SqrtOf(number);
 
         /// <summary>
@@ -54,7 +48,7 @@ namespace SLINTIC.Math
         /// </summary>
         /// <returns>Floating point value rounded to the most precise position</returns>
         public static float Round(float number)
-        {   // wow turns out trying to teach a computer how to round floating point values really sucks
+        {
             if (!number.ToString().Contains(".")) return RoundWhole(number);
 
             string[] nstring = number.ToString().Split("."); // gets the number in the parameter and splits it into 2 strings divided by the decimal 
@@ -94,7 +88,7 @@ namespace SLINTIC.Math
                         // so for the past fucking hour I've been slamming my head on my desk wondering why it wasn't recognizing
                         // my lambda notation action only to realize that it wasn't recognizing my array
                         // I fucking hate it here
-                        Array.ForEach((rightsplit.Count - shift - 1).Destructure(), (int i) => rightsplit.RemoveAt(i + shift)); // I'm genuienly gonna fucking kill someone
+                        Array.ForEach((rightsplit.Count - shift - 1).Destructure(), (int i) => rightsplit.RemoveAt(i + shift)); // I'm genuinely gonna fucking kill someone
                         return (new int[] {leftsplit.ToArray().Concatenate(), rightsplit.ToArray().Concatenate()}).Concatenate();
                     } else // if 0 < n < 5
                     {
@@ -115,13 +109,11 @@ namespace SLINTIC.Math
             }
         }
 
-        /// <returns>
-        /// An equivalent whole number rounded to the tens position
-        /// </returns>
+        /// <returns>An equivalent whole number rounded to the tens position</returns>
         public static float RoundWhole(float number)
         {
             if (number.ToString().Contains(".")) return Round(number);
-            int[] num = number.ToString().ToCharArray().Cast<int>().ToArray();
+            int[] num = number.Cast<int>().ToArray();
 
             if (num[num.Length - 1] >= 5)
             {
@@ -132,22 +124,16 @@ namespace SLINTIC.Math
         }
 
         // Overload 1 : float extension
-        /// <returns>
-        /// An equivalent floating point value rounded to the most precise position
-        /// </returns>
+        /// <returns>An equivalent floating point value rounded to the most precise position</returns>
         public static float Rounded(this float number) => Round(number);
 
         // floating point extension
         /// <summary>
-        /// Low latency floating point inverse square root operation for calculating normalized vectors in a 3D environment
+        /// Low latency floating point inverse square root operation for calculating normalized vectors
         /// </summary>
-        [Description("Low latency floating point inverse square root operation for calculating normalized vectors in a 3D environment"),Category("Vector Calculations")]
         public static float ToInvSqrt(this float number) => FastInvSqrt(number);
 
-        /// <returns>
-        /// The result of a given number to the power of an exponent
-        /// </returns>
-        [Description("Calculates the result of a given number to the power of an exponent"),Category("Arithmetic")]
+        /// <returns>The result of a given number to the power of an exponent</returns>
         public static float ToPower(this float baseNum, float exponent)
         {
             if (exponent is 1) return baseNum;
@@ -164,12 +150,12 @@ namespace SLINTIC.Math
         public static float ToPowerOf(this float baseNum, float exponent) => ToPower(baseNum, exponent);
     }
 
+    // I dunno why I created these structs really, just was kinda bored
     public struct Coord2
     {
         /// <summary>
         /// Value consisting of 2 floating point numbers to represent locations in a 2D environment (X,Y)
         /// </summary>
-        [Description("Value consisting of 2 floating point numbers to represent locations in a 2D environment (X,Y)"),Category("Algebra")]
         public Coord2(float x, float y, string tag, C2Env? env)
         {
             this.x = x;
@@ -178,14 +164,10 @@ namespace SLINTIC.Math
             this.env = env;
         }
 
-        /// <summary>
-        /// Returns the geometric distance between 2 Coord2 values in a 2D environment
-        /// </summary>
+        /// <returns>The geometric distance between 2 Coord2 values in a 2D environment</returns>
         public float Distance(Coord2 nbase, Coord2 ncomparative) => ((ncomparative.x - nbase.x).ToPowerOf(2) + (ncomparative.y - nbase.x).ToPowerOf(2)).Sqrt();
 
-        /// <summary>
-        /// Returns the geometric midpoint between 2 Coord2 values
-        /// </summary>
+        /// <returns>The geometric midpoint between 2 Coord2 values</returns>
         public Coord2 Midpoint(Coord2 nbase, Coord2 ncomparative)
         {
             float xdiff = (ncomparative.x - nbase.x);
@@ -197,9 +179,13 @@ namespace SLINTIC.Math
         /// ID to differenciate Coord2 instances
         /// </summary>
         public string tag;
-        [Description("Represents the relative X coordinate (left/right)"),Category("2D Positioning")]
+        /// <summary>
+        /// Represents the X coordinate (horizontal shift)
+        /// </summary>
         public float x;
-        [Description("Represents the relative Y coordinate (up/down)"),Category("2D Positioning")]
+        /// <summary>
+        /// Represents the Y coordinate (vertical shift)
+        /// </summary>
         public float y;
         /// <summary>
         /// Represents the geometric environment the Coord2 value is in
@@ -212,7 +198,6 @@ namespace SLINTIC.Math
         /// <summary>
         /// Value consisting of 3 floating point numbers to represent locations in a 3D environment (X,Y,Z)
         /// </summary>
-        [Description("Value consisting of 3 floating point numbers to represent locations in a 3D environment (X,Y,Z)"),Category("3D Positioning")]
         public Coord3(float x, float y, float z, string tag)
         {
             this.x = x;
@@ -221,9 +206,7 @@ namespace SLINTIC.Math
             this.tag = tag;
         }
 
-        /// <summary>
-        /// Returns the geometric distance between 2 Coord3 values in a 3D environment
-        /// </summary>
+        /// <returns>The geometric distance between 2 Coord3 values in a 3D environment</returns>
         public float Distance(Coord3 nbase, Coord3 ncomparative) => ((ncomparative.x - nbase.x).ToPowerOf(2) + (ncomparative.y - nbase.y).ToPowerOf(2) + (ncomparative.z - nbase.z).ToPowerOf(2)).Sqrt();
 
         /// <summary>
@@ -233,22 +216,18 @@ namespace SLINTIC.Math
         /// <summary>
         /// Represents the relative X coordinate (left/right)
         /// </summary>
-        [Description("Represents the relative X coordinate (left/right)"),Category("3D Positioning")]
         public float x;
         /// <summary>
-        /// Represents the relative Y coordinate (near/far)
+        /// Represents the relative Y coordinate (up/down)
         /// </summary>
-        [Description("Represents the relative Y coordinate (near/far)"),Category("3D Positioning")]
         public float y;
         /// <summary>
-        /// Represents the relative Z coordinate (height)
+        /// Represents the relative Z coordinate (depth)
         /// </summary>
-        [Description("Represents the relative Z coordinate (height)"),Category("3D Positioning")]
         public float z;
         /// <summary>
         /// Represents the true center of the dimentional plane
         /// </summary>
-        [Description("Represents the true center of a dimentional plane"),Category("3D Positioning")]
         public static Coord3 Origin = new Coord3(0, 0, 0, "Origin");
     }
 
@@ -305,71 +284,5 @@ namespace SLINTIC.Math
         public float xforce;
         public float yforce;
         public float decay;
-    }
-
-    public struct Slope
-    {
-        /// <summary>
-        /// 2-point value representative of the vertical and horizontal steps between different Coord2 vectors
-        /// </summary>
-        [Description("2-point value representative of the vertical and horizontal steps between different Coord2 vectors"),Category("Algebra")]
-        public Slope(int rise, int run)
-        {
-            this.rise = rise;
-            this.run = run;
-        }
-
-        /// <summary>
-        /// Calculates the vertical and horizontal steps between different Coord2 vectors and returns them as a 2-point Slope value
-        /// </summary>
-        [Description("Calculates the vertical and horizontal steps between different Coord2 vectors and returns them as a 2-point Slope value"),Category("Algebra")]
-        public Slope CalcSlope(Coord2 baseC, Coord2 comparativeC)
-        {
-            Slope result = new Slope();
-
-            if (baseC.x == comparativeC.x)
-            {
-                result.run = 0;
-                if (baseC.y == comparativeC.y)
-                {
-                    result.rise = 0;
-                    return result;
-                }
-
-                while(baseC.y != comparativeC.y)
-                {
-                    baseC.y++;
-                }
-                result.rise = baseC.y;
-                return result;
-            } else if (baseC.y == comparativeC.y)
-            {
-                result.rise = baseC.y;
-
-                while (baseC.x != comparativeC.x)
-                {
-                    baseC.x++;
-                }
-                result.run = baseC.x;
-                return result;
-            } else 
-            {
-                while (baseC.x != comparativeC.x)
-                {
-                    baseC.
-                }
-            }
-        }
-
-        /// <summary>
-        /// Represents the amount of vertical shift between 2 Y coordinates
-        /// </summary>
-        [Description("Represents the amount of vertical shift between 2 Y coordinates"),Category("Algebra")]
-        public float rise;
-        /// <summary>
-        /// Represents the amount of horizontal shift between 2 X coordinates
-        /// </summary>
-        [Description("Represents the amount of horizontal shift between 2 X coordinates"),Category("Algebra")]
-        public float run;
     }
 }
